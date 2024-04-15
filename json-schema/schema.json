@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://stac-extensions.github.io/render/v1.0.0/schema.json#",
+  "$id": "https://stac-extensions.github.io/render/v1.1.0/schema.json#",
   "title": "Rendering Extension",
   "description": "STAC Rendering Extension for STAC Items and STAC Collections.",
   "oneOf": [
@@ -14,18 +14,23 @@
           "type": "object",
           "required": [
             "type",
-            "assets",
-            "renders"
+            "properties"
           ],
           "properties": {
             "type": {
               "const": "Feature"
             },
-            "renders": {
-              "$comment": "This validates the fields in Item Assets, but does not require them.",
+            "properties": {
               "type": "object",
-              "additionalProperties": {
-                "$ref": "#/definitions/fields"
+              "required": ["renders"],
+              "properties": {
+                "renders": {
+                  "$comment": "This validates the fields in Item Assets, but does not require them.",
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/definitions/fields"
+                  }
+                }
               }
             }
           }
@@ -91,7 +96,7 @@
         "stac_extensions": {
           "type": "array",
           "contains": {
-            "const": "https://stac-extensions.github.io/render/v1.0.0/schema.json"
+            "const": "https://stac-extensions.github.io/render/v1.1.0/schema.json"
           }
         }
       }
@@ -161,7 +166,7 @@
             "type": "number"
           }
         },
-        "bidx":{
+        "bidx": {
           "type": "array",
           "items": {
             "type": "number"
